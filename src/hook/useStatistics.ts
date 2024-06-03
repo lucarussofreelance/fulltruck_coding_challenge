@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import json1 from './json1.json'
 import json2 from './json2.json'
+import { StatisticData } from '../models/StatisticData'
 
 type Props = {
   aggregateBy: 'day' | 'week' | 'month'
@@ -25,7 +26,7 @@ const useStatistics = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const fetchStatistics = (_: Props) => {
     toggleRef.current = !toggleRef.current
-    return new Promise((resolve) => {
+    return new Promise<StatisticData>((resolve) => {
       const delay = Math.random() * 3000 + 500
       setTimeout(() => {
         toggleRef.current ? resolve(json1) : resolve(json2)
